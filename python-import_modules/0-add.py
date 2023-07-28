@@ -1,10 +1,4 @@
-#!/usr/bin/python3
-
-def add(a, b): 
-    return a + b
-
-
-result = add(1, 2) 
-
-print("1 + 2 =", result) 
-
+from add_0 import add
+a=1
+b=2
+print(f"{a}+{b}={add(a, b)}")
