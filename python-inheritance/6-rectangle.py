@@ -1,22 +1,46 @@
-class BaseGeometry:
-    """ Base geometry class """
+class BaseMetaClass(type):
+    """
+    overrides.
+    """
+    def __dir__(cls):
+        return [
+            attribute
+            for attribute in super().__dir__()
+            if attribute != '__init_subclass__' and attribute != 'BaseGeometry'
+        ]
+
+class BaseGeometry(metaclass=BaseMetaClass):
+    """
+    Do nothing: By passing pass.
+    """
 
     def area(self):
-        raise Exception("area() is not implemented")
+        '''
+        Public instance method that raises an Exception
+        '''
+        raise Exception('area() is not implemented')
 
     def integer_validator(self, name, value):
-        """ Validate the value """
-        if not isinstance(value, int):
-            raise TypeError("{} must be an integer".format(name))
+        '''
+        Public instance method that validate a value
+        Attr:
+            name(string): the name string.
+            value(int): must be an integer greater than 0.
+        '''
+        self.name = name
+        self.value = value
+
+        if type(value) is not int:
+            raise TypeError('{} must be an integer'.format(name))
+
         if value <= 0:
-            raise ValueError("{} must be greater than 0".format(name))
+            raise ValueError('{} must be greater than 0'.format(name))
 
-
+'''Rectangle class that inherit from BaseGeometry'''
 class Rectangle(BaseGeometry):
-    """ Rectangle class """
-
+    '''Initializing with and height'''
     def __init__(self, width, height):
         self.__width = width
         self.__height = height
-        self.integer_validator("width", self.__width)
-        self.integer_validator("height", self.__height)
+        self.integer_validator('width', width)
+        self.integer_validator('height', height)
