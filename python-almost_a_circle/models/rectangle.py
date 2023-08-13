@@ -148,5 +148,3 @@ class Rectangle(Base):
             if 'y' in kwargs:
                 self.__y = kwargs['y']
 
-
-
