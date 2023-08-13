@@ -1,13 +1,10 @@
-
+#!/usr/bin/python3
 #from base import Base
-
-
 
 
 from models.base import Base
 class Rectangle(Base):
-
-
+#rectancle class
     def __init__(self, width, height, x=0, y=0, id=None):
         # initalize the class
         super().__init__(id)
